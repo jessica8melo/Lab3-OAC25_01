@@ -4,7 +4,7 @@
 -- MODULE: altsyncram 
 
 -- ============================================================
--- File Name: ramD.vhd
+-- File Name: ramUnica.vhd
 -- Megafunction Name(s):
 -- 			altsyncram
 --
@@ -40,19 +40,19 @@ USE ieee.std_logic_1164.all;
 LIBRARY altera_mf;
 USE altera_mf.altera_mf_components.all;
 
-ENTITY ramD IS
+ENTITY ramUnica IS
 	PORT
 	(
 		address		: IN STD_LOGIC_VECTOR (9 DOWNTO 0);
 		clock		: IN STD_LOGIC  := '1';
 		data		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		wren		: IN STD_LOGIC ;
-		q		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
+		q			: OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
 	);
-END ramD;
+END ramUnica;
 
 
-ARCHITECTURE SYN OF ramd IS
+ARCHITECTURE SYN OF ramUnica IS
 
 	SIGNAL sub_wire0	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 
@@ -63,7 +63,7 @@ BEGIN
 	GENERIC MAP (
 		clock_enable_input_a => "BYPASS",
 		clock_enable_output_a => "BYPASS",
-		init_file => "DE_data.mif",
+		init_file => "de1_all.mif",
 		intended_device_family => "Cyclone IV E",
 		lpm_hint => "ENABLE_RUNTIME_MOD=NO",
 		lpm_type => "altsyncram",
@@ -151,9 +151,9 @@ END SYN;
 -- Retrieval info: CONNECT: @data_a 0 0 32 0 data 0 0 32 0
 -- Retrieval info: CONNECT: @wren_a 0 0 0 0 wren 0 0 0 0
 -- Retrieval info: CONNECT: q 0 0 32 0 @q_a 0 0 32 0
--- Retrieval info: GEN_FILE: TYPE_NORMAL ramD.vhd TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL ramD.inc FALSE
--- Retrieval info: GEN_FILE: TYPE_NORMAL ramD.cmp TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL ramD.bsf FALSE
--- Retrieval info: GEN_FILE: TYPE_NORMAL ramD_inst.vhd FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL ramUnica.vhd TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL ramUnica.inc FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL ramUnica.cmp TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL ramUnica.bsf FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL ramUnica_inst.vhd FALSE
 -- Retrieval info: LIB_FILE: altera_mf
