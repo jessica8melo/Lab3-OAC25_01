@@ -1,0 +1,445 @@
+Determining the location of the ModelSim executable...
+
+Using: C:\intelFPGA\20.1\modelsim_ase\win32aloem
+
+To specify a ModelSim executable directory, select: Tools -> Options -> EDA Tool Options
+Note: if both Questa Intel FPGA Edition and ModelSim executables are available, Questa Intel FPGA Edition will be used.
+
+**** Generating the ModelSim Testbench ****
+
+quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off riscv -c riscv --vector_source="C:/tempOAC/riscv_restored/wave.vwf" --testbench_file="C:/tempOAC/riscv_restored/simulation/qsim/wave.vwf.vht"
+
+Info: *******************************************************************
+Info: Running Quartus Prime EDA Netlist Writer
+    Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+    Info: Copyright (C) 2025  Altera Corporation. All rights reserved.
+    Info: Your use of Altera Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Altera Program License 
+    Info: Subscription Agreement, the Altera Quartus Prime License Agreement,
+    Info: the Altera IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Altera and sold by Altera or its authorized distributors.  Please
+    Info: refer to the Altera Software License Subscription Agreements 
+    Info: on the Quartus Prime software download page.
+    Info: Processing started: Sun Jun  8 17:41:22 2025
+Info: Command: quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off riscv -c riscv --vector_source=C:/tempOAC/riscv_restored/wave.vwf --testbench_file=C:/tempOAC/riscv_restored/simulation/qsim/wave.vwf.vht
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+
+ file when writing test bench files
+
+nfo (201002): Generated VHDL Test Bench File C:/tempOAC/riscv_restored/simulation/qsim/wave.vwf.vht for simulation
+Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 106 warnings
+    Info: Peak virtual memory: 4652 megabytes
+    Info: Processing ended: Sun Jun  8 17:41:22 2025
+    Info: Elapsed time: 00:00:00
+    Info: Total CPU time (on all processors): 00:00:00
+
+Completed successfully. 
+
+**** Generating the timing simulation netlist ****
+
+quartus_eda --write_settings_files=off --simulation --functional=off --flatten_buses=off --timescale=1ps --tool=modelsim_oem --format=vhdl --output_directory="C:/tempOAC/riscv_restored/simulation/qsim/" riscv -c riscv
+
+Info: *******************************************************************
+Info: Running Quartus Prime EDA Netlist Writer
+    Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+    Info: Copyright (C) 2025  Altera Corporation. All rights reserved.
+    Info: Your use of Altera Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Altera Program License 
+    Info: Subscription Agreement, the Altera Quartus Prime License Agreement,
+    Info: the Altera IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Altera and sold by Altera or its authorized distributors.  Please
+    Info: refer to the Altera Software License Subscription Agreements 
+    Info: on the Quartus Prime software download page.
+    Info: Processing started: Sun Jun  8 17:41:22 2025
+Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=off --flatten_buses=off --timescale=1ps --tool=modelsim_oem --format=vhdl --output_directory=C:/tempOAC/riscv_restored/simulation/qsim/ riscv -c riscv
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (204019): Generated file riscv_6_1200mv_85c_slow.vho in folder "C:/tempOAC/riscv_restored/simulation/qsim//" for EDA simulation tool
+Info (204019): Generated file riscv_6_1200mv_0c_slow.vho in folder "C:/tempOAC/riscv_restored/simulation/qsim//" for EDA simulation tool
+Info (204019): Generated file riscv_min_1200mv_0c_fast.vho in folder "C:/tempOAC/riscv_restored/simulation/qsim//" for EDA simulation tool
+Info (204019): Generated file riscv.vho in folder "C:/tempOAC/riscv_restored/simulation/qsim//" for EDA simulation tool
+Info (204019): Generated file riscv_6_1200mv_85c_vhd_slow.sdo in folder "C:/tempOAC/riscv_restored/simulation/qsim//" for EDA simulation tool
+Info (204019): Generated file riscv_6_1200mv_0c_vhd_slow.sdo in folder "C:/tempOAC/riscv_restored/simulation/qsim//" for EDA simulation tool
+Info (204019): Generated file riscv_min_1200mv_0c_vhd_fast.sdo in folder "C:/tempOAC/riscv_restored/simulation/qsim//" for EDA simulation tool
+Info (204019): Generated file riscv_vhd.sdo in folder "C:/tempOAC/riscv_restored/simulation/qsim//" for EDA simulation tool
+Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 4688 megabytes
+    Info: Processing ended: Sun Jun  8 17:41:24 2025
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
+
+Completed successfully. 
+
+**** Generating the ModelSim .do script ****
+
+C:/tempOAC/riscv_restored/simulation/qsim/riscv.do generated.
+
+Completed successfully. 
+
+**** Running the ModelSim simulation ****
+
+C:/intelFPGA/20.1/modelsim_ase/win32aloem/vsim -c -do riscv.do
+
+Reading pref.tcl
+
+
+# 2020.1
+
+
+# do riscv.do
+
+# ** Warning: (vlib-34) Library already exists at "work".
+
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+
+# Start time: 17:41:25 on Jun 08,2025
+# vcom -work work riscv.vho 
+
+# -- Loading package STANDARD
+
+# -- Loading package TEXTIO
+
+# -- Loading package std_logic_1164
+
+# -- Loading package VITAL_Timing
+
+# -- Loading package VITAL_Primitives
+
+# -- Loading package cycloneive_atom_pack
+
+# -- Loading package cycloneive_components
+
+# -- Compiling entity hard_block
+
+# -- Compiling architecture structure of hard_block
+
+# -- Loading package dffeas_pack
+
+# -- Loading package altera_primitives_components
+
+# -- Compiling entity TopDE
+
+# -- Compiling architecture structure of TopDE
+
+# End time: 17:41:25 on Jun 08,2025, Elapsed time: 0:00:00
+
+# Errors: 0, Warnings: 0
+
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+
+# Start time: 17:41:25 on Jun 08,2025
+# vcom -work work wave.vwf.vht 
+
+# -- Loading package STANDARD
+
+# -- Loading package TEXTIO
+
+# -- Loading package std_logic_1164
+
+# -- Compiling entity TopDE_vhd_vec_tst
+
+# -- Compiling architecture TopDE_arch of TopDE_vhd_vec_tst
+
+# End time: 17:41:25 on Jun 08,2025, Elapsed time: 0:00:00
+
+# Errors: 0, Warnings: 0
+
+# vsim -c -t 1ps -sdfmax "TopDE_vhd_vec_tst/i1=riscv_vhd.sdo" -L cycloneive -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.TopDE_vhd_vec_tst 
+# Start time: 17:41:25 on Jun 08,2025
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.topde_vhd_vec_tst(topde_arch)
+# SDF 2020.1 Compiler 2020.02 Feb 28 2020
+# 
+# Loading ieee.vital_timing(body)
+# Loading ieee.vital_primitives(body)
+# Loading altera.dffeas_pack
+# Loading altera.altera_primitives_components
+# Loading cycloneive.cycloneive_atom_pack(body)
+# Loading cycloneive.cycloneive_components
+# Loading work.topde(structure)
+# Loading work.hard_block(structure)
+# Loading ieee.std_logic_arith(body)
+# Loading cycloneive.cycloneive_io_obuf(arch)
+# Loading cycloneive.cycloneive_io_ibuf(arch)
+# Loading cycloneive.cycloneive_clkctrl(vital_clkctrl)
+# Loading cycloneive.cycloneive_ena_reg(behave)
+# Loading cycloneive.cycloneive_lcell_comb(vital_lcell_comb)
+# Loading altera.dffeas(vital_dffeas)
+# Loading cycloneive.cycloneive_ram_block(block_arch)
+# Loading cycloneive.cycloneive_ram_register(reg_arch)
+# Loading cycloneive.cycloneive_ram_pulse_generator(pgen_arch)
+# Loading instances from riscv_vhd.sdo
+# Loading timing data from riscv_vhd.sdo
+# ** Warning: Design size of 473441 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
+#    Time: 0 ps  Iteration: 0  Instance: /topde_vhd_vec_tst File: wave.vwf.vht
+
+# after#35
+
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.104 ns; At : 7.485 ns
+#    Time: 7485 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.141 ns; At : 7.516 ns
+#    Time: 7516 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(0) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.002 ns; At : 37.383 ns
+#    Time: 37383 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a9\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(0) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.002 ns; At : 37.396 ns
+#    Time: 37396 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a18\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(3) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.101 ns; At : 37.482 ns
+#    Time: 37482 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a9\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(3) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.123 ns; At : 37.504 ns
+#    Time: 37504 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.036 ns; At : 97.417 ns
+#    Time: 97417 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a9\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(2) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.048 ns; At : 97.429 ns
+#    Time: 97429 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(3) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.083 ns; At : 97.458 ns
+#    Time: 97458 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(3) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.066 ns; At : 97.46 ns
+#    Time: 97460 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a18\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(8) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.084 ns; At : 97.465 ns
+#    Time: 97465 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.073 ns; At : 97.467 ns
+#    Time: 97467 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a18\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(1) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.111 ns; At : 97.486 ns
+#    Time: 97486 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(8) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.118 ns; At : 97.499 ns
+#    Time: 97499 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a9\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(1) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.11 ns; At : 97.504 ns
+#    Time: 97504 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a18\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(8) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.134 ns; At : 97.509 ns
+#    Time: 97509 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(8) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.134 ns; At : 97.528 ns
+#    Time: 97528 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a18\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(1) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.155 ns; At : 97.536 ns
+#    Time: 97536 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a9\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.159 ns; At : 97.54 ns
+#    Time: 97540 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(5) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.179 ns; At : 97.56 ns
+#    Time: 97560 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a9\/addr_a_register
+# ** Warning: */DFFEAS HOLD High VIOLATION ON ASDATA WITH RESPECT TO CLK;
+#   Expected := 0.157 ns; Observed := 0.02 ns; At : 99.275 ns
+#    Time: 99275 ps  Iteration: 2  Instance: /topde_vhd_vec_tst/i1/\UNI1|Regs1|xreg32[5][7]\
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(0) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.092 ns; At : 107.473 ns
+#    Time: 107473 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(6) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.005 ns; At : 157.399 ns
+#    Time: 157399 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a18\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(7) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.019 ns; At : 157.4 ns
+#    Time: 157400 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(2) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.047 ns; At : 157.422 ns
+#    Time: 157422 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.055 ns; At : 157.436 ns
+#    Time: 157436 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(6) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.061 ns; At : 157.442 ns
+#    Time: 157442 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a9\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.072 ns; At : 157.447 ns
+#    Time: 157447 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(8) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.123 ns; At : 157.504 ns
+#    Time: 157504 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a9\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(7) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.128 ns; At : 157.509 ns
+#    Time: 157509 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a9\/addr_a_register
+
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD   X  VIOLATION ON data(5) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.138 ns; At : 157.519 ns
+#    Time: 157519 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD   X  VIOLATION ON data(5) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.128 ns; At : 157.522 ns
+#    Time: 157522 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a18\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(9) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.143 ns; At : 157.524 ns
+#    Time: 157524 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a9\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(8) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.139 ns; At : 157.533 ns
+#    Time: 157533 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a18\/addr_a_register
+# ** Warning: */DFFEAS HOLD High VIOLATION ON DATAIN WITH RESPECT TO CLK;
+#   Expected := 0.157 ns; Observed := 0.022 ns; At : 159.291 ns
+#    Time: 159291 ps  Iteration: 1  Instance: /topde_vhd_vec_tst/i1/\UNI1|Regs1|xreg32[5][13]\
+# ** Warning: */DFFEAS HOLD  Low VIOLATION ON ASDATA WITH RESPECT TO CLK;
+#   Expected := 0.157 ns; Observed := 0.076 ns; At : 159.332 ns
+#    Time: 159332 ps  Iteration: 2  Instance: /topde_vhd_vec_tst/i1/\UNI1|Regs1|xreg32[5][8]\
+# ** Warning: */DFFEAS HOLD High VIOLATION ON DATAIN WITH RESPECT TO CLK;
+#   Expected := 0.157 ns; Observed := 0.094 ns; At : 159.351 ns
+#    Time: 159351 ps  Iteration: 1  Instance: /topde_vhd_vec_tst/i1/\UNI1|Regs1|xreg32[5][6]\
+# ** Warning: */DFFEAS HOLD High VIOLATION ON ASDATA WITH RESPECT TO CLK;
+#   Expected := 0.157 ns; Observed := 0.121 ns; At : 159.39 ns
+#    Time: 159390 ps  Iteration: 2  Instance: /topde_vhd_vec_tst/i1/\UNI1|Regs1|xreg32[5][24]\
+# ** Warning: */DFFEAS HOLD High VIOLATION ON ASDATA WITH RESPECT TO CLK;
+#   Expected := 0.157 ns; Observed := 0.026 ns; At : 159.596 ns
+#    Time: 159596 ps  Iteration: 2  Instance: /topde_vhd_vec_tst/i1/\UNI1|Regs1|xreg32[5][27]\
+# ** Warning: */DFFEAS HOLD High VIOLATION ON ASDATA WITH RESPECT TO CLK;
+#   Expected := 0.157 ns; Observed := 0.092 ns; At : 159.662 ns
+#    Time: 159662 ps  Iteration: 2  Instance: /topde_vhd_vec_tst/i1/\UNI1|Regs1|xreg32[5][20]\
+# ** Warning: */DFFEAS HOLD High VIOLATION ON ASDATA WITH RESPECT TO CLK;
+#   Expected := 0.157 ns; Observed := 0.112 ns; At : 159.705 ns
+#    Time: 159705 ps  Iteration: 2  Instance: /topde_vhd_vec_tst/i1/\UNI1|Regs1|xreg32[5][25]\
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(9) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.021 ns; At : 177.396 ns
+#    Time: 177396 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(5) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.112 ns; At : 177.487 ns
+#    Time: 177487 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(5) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.142 ns; At : 177.523 ns
+#    Time: 177523 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(5) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.138 ns; At : 177.532 ns
+#    Time: 177532 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a18\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.152 ns; At : 177.533 ns
+#    Time: 177533 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.084 ns; At : 257.465 ns
+#    Time: 257465 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.101 ns; At : 257.476 ns
+#    Time: 257476 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(5) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.117 ns; At : 257.498 ns
+#    Time: 257498 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(5) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.126 ns; At : 257.501 ns
+#    Time: 257501 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(5) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.113 ns; At : 257.507 ns
+#    Time: 257507 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a18\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(5) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.07 ns; At : 337.445 ns
+#    Time: 337445 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(3) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.068 ns; At : 337.449 ns
+#    Time: 337449 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a9\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(3) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.088 ns; At : 337.469 ns
+#    Time: 337469 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(6) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.16 ns; At : 337.541 ns
+#    Time: 337541 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(3) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.168 ns; At : 337.543 ns
+#    Time: 337543 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(0) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.165 ns; At : 337.546 ns
+#    Time: 337546 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(6) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.164 ns; At : 337.558 ns
+#    Time: 337558 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a18\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.009 ns; At : 377.384 ns
+#    Time: 377384 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(5) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.034 ns; At : 377.409 ns
+#    Time: 377409 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.04 ns; At : 417.421 ns
+#    Time: 417421 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.057 ns; At : 417.432 ns
+#    Time: 417432 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.097 ns; At : 417.478 ns
+#    Time: 417478 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(1) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.106 ns; At : 417.481 ns
+#    Time: 417481 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(1) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.1 ns; At : 417.494 ns
+#    Time: 417494 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a18\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.134 ns; At : 417.509 ns
+#    Time: 417509 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(1) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.154 ns; At : 417.535 ns
+#    Time: 417535 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a9\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(5) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.077 ns; At : 477.452 ns
+#    Time: 477452 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(3) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.007 ns; At : 517.388 ns
+#    Time: 517388 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(5) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.077 ns; At : 517.452 ns
+#    Time: 517452 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.078 ns; At : 517.459 ns
+#    Time: 517459 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a0\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(3) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.087 ns; At : 517.462 ns
+#    Time: 517462 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(4) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.095 ns; At : 517.47 ns
+#    Time: 517470 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# Simulation time: 214534 ps
+
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD  Low VIOLATION ON data(5) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.04 ns; At : 537.415 ns
+#    Time: 537415 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(5) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.172 ns; At : 537.547 ns
+#    Time: 537547 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+# ** Warning: /RAM Register VitalSetupHoldCheck HOLD High VIOLATION ON data(5) WITH RESPECT TO clk;
+#   Expected := 0.187 ns; Observed := 0.077 ns; At : 557.452 ns
+#    Time: 557452 ps  Iteration: 0  Instance: /topde_vhd_vec_tst/i1/\UNI1|MemD|altsyncram_component|auto_generated|ram_block1a27\/addr_a_register
+
+# End time: 17:41:30 on Jun 08,2025, Elapsed time: 0:00:05
+# Errors: 0, Warnings: 77
+
+Completed successfully. 
+
+**** Converting ModelSim VCD to vector waveform ****
+
+Reading C:/tempOAC/riscv_restored/wave.vwf...
+
+Reading C:/tempOAC/riscv_restored/simulation/qsim/riscv.msim.vcd...
+
+Processing channel transitions... 
+
+Writing the resulting VWF to C:/tempOAC/riscv_restored/simulation/qsim/riscv_20250608174130.sim.vwf
+
+Finished VCD to VWF conversion.
+
+Completed successfully. 
+
+All completed.

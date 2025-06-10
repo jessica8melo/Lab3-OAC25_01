@@ -1,0 +1,93 @@
+Archive Project report for riscv
+Sun Jun  8 18:00:21 2025
+Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Archive Project Summary
+  3. Archive Project Messages
+  4. Files Archived
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++------------------------------------------------------------+
+; Archive Project Summary                                    ;
++------------------------+-----------------------------------+
+; Archive Project Status ; Failed - Sun Jun  8 18:00:21 2025 ;
+; Revision Name          ; riscv                             ;
+; Top-level Entity Name  ; TopDE                             ;
+; Family                 ; Cyclone IV E                      ;
++------------------------+-----------------------------------+
+
+
++--------------------------+
+; Archive Project Messages ;
++--------------------------+
+Info: File Set 'Source control' contains:
+    Info: Project source and settings files
+    Info: Automatically detected source files
+Warning: Hierarchical Platform Designer systems and custom IP components(_hw.tcl and associated files) are not archived by the Quartus Archiver
+Info: Archive will store files relative to the closest common parent directory
+Error (225006): Can't create Quartus Prime Archive File C:/tempOAC/riscv_restored/B6_LAB2_OAC_2025/1.qar
+Error: ERROR: Archiver failed either because some files could not be processed (refer to: C:/tempOAC/riscv_restored/B6_LAB2_OAC_2025/1.qarlog) or because C:/tempOAC/riscv_restored/B6_LAB2_OAC_2025/1.qar is read-only
+
+Error: Failed to generate 'C:/tempOAC/riscv_restored/B6_LAB2_OAC_2025/1.qar'
+Info: Generated report 'riscv.archive.rpt'
+Error (23031): Evaluation of Tcl script c:/altera_lite/24.1std/quartus/common/tcl/apps/qpm/qar.tcl unsuccessful
+Error: Quartus Prime Shell was unsuccessful. 4 errors, 1 warning
+    Error: Peak virtual memory: 4843 megabytes
+    Error: Processing ended: Sun Jun  8 18:00:21 2025
+    Error: Elapsed time: 00:00:01
+    Error: Total CPU time (on all processors): 00:00:01
+
+
++-------------------------+
+; Files Archived          ;
++-------------------------+
+; File Name               ;
++-------------------------+
+; alu.vhd                 ;
+; assignment_defaults.qdf ;
+; control_unit.vhd        ;
+; de1_text.mif            ;
+; genImm32.vhd            ;
+; ramD.cmp                ;
+; ramD.qip                ;
+; ramD.vhd                ;
+; ramI.cmp                ;
+; ramI.qip                ;
+; ramI.vhd                ;
+; riscv.qpf               ;
+; riscv.qsf               ;
+; riscv_pkg.vhd           ;
+; TopDE.vhd               ;
+; ula_control.vhd         ;
+; uniciclo.vhd            ;
+; wave.vwf                ;
+; xreg.vhd                ;
++-------------------------+
+
+

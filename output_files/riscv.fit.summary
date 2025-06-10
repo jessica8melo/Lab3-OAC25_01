@@ -1,0 +1,16 @@
+Fitter Status : Successful - Sun Jun  8 16:42:29 2025
+Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+Revision Name : riscv
+Top-level Entity Name : TopDE
+Family : Cyclone IV E
+Device : EP4CE6F17C6
+Timing Models : Final
+Total logic elements : 2,892 / 6,272 ( 46 % )
+    Total combinational functions : 2,558 / 6,272 ( 41 % )
+    Dedicated logic registers : 1,025 / 6,272 ( 16 % )
+Total registers : 1025
+Total pins : 108 / 180 ( 60 % )
+Total virtual pins : 0
+Total memory bits : 65,536 / 276,480 ( 24 % )
+Embedded Multiplier 9-bit elements : 0 / 30 ( 0 % )
+Total PLLs : 0 / 2 ( 0 % )
