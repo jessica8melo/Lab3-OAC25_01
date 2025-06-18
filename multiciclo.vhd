@@ -11,27 +11,42 @@ entity Multiciclo is
         PC       : out std_logic_vector(31 downto 0);
         Instr    : out std_logic_vector(31 downto 0);
         regin    : in  std_logic_vector(4 downto 0);
-        regout   : out std_logic_vector(31 downto 0)
-		  -- Porta de saída para depuração do estado
-        Estado_out : out std_logic_vector(3 downto 0) 
+        regout   : out std_logic_vector(31 downto 0);
+ -- Porta de saída para depuração do estado
+        Estado_out : out std_logic_vector(3 downto 0)
     );
 end Multiciclo;
 
 architecture Behavioral of Multiciclo is
-	 -- Componentes não tiveram mudanças de Uniciclo pra Multiciclo
+-- Componentes não tiveram mudanças de Uniciclo pra Multiciclo
     component ControlUnit is
-        port (
-            opcode      : in  STD_LOGIC_VECTOR (6 downto 0); -- Opcode da instrução
-            zero_flag   : in  STD_LOGIC; -- Flag da ULA para BEQ
-            ALUOpType   : out STD_LOGIC_VECTOR(1 downto 0);
-            RegWrite    : out STD_LOGIC;
-            MemRead     : out STD_LOGIC;
-            MemWrite    : out STD_LOGIC;
-            ALUSrc      : out STD_LOGIC;
-            WBDataSel   : out STD_LOGIC_VECTOR(1 downto 0); -- Write-Back Data Select: 00=ALU, 01=Mem, 10=PC+4
-            BranchPCSel : out STD_LOGIC; -- Condição de Branch
-            Jump        : out STD_LOGIC);
-    end component;
+    Port (
+        -- ENTRADAS
+        opcode      : in  STD_LOGIC_VECTOR (6 downto 0); -- Opcode da instrução
+        zero_flag   : in  STD_LOGIC;                     -- Flag da ULA para BEQ
+
+        -- SAÍDAS DE CONTROLE DO DATAPATH
+        -- Controle do PC
+        PCWrite     : out STD_LOGIC;
+        PCSource    : out STD_LOGIC_VECTOR(1 downto 0); -- 00=ALU(PC+4), 01=ALUOut(Branch), 10=JUMP_ADDR
+
+        -- Controle de Regs de Estado
+        IRWrite     : out STD_LOGIC;
+        RegWrite    : out STD_LOGIC; -- Escrita no Banco de Registradores
+
+        -- Controle dos MUX da ULA
+        ALUSrcA     : out STD_LOGIC; -- 0=PC, 1=Reg. A
+        ALUSrcB     : out STD_LOGIC_VECTOR(1 downto 0); -- 00=Reg. B, 01=Imm(4), 10=Imm
+
+        -- Controle da Memória
+        MemRead     : out STD_LOGIC;
+        MemWrite    : out STD_LOGIC;
+        IorD        : out STD_LOGIC; -- 0=Endereço do PC, 1=Endereço da ALUOut
+
+        -- Controle do MUX de Write Back
+        WBDataSel   : out STD_LOGIC -- 0=ALUOut, 1=Dado da Memória (MDR)
+    );
+end component;
 
     component xregs is
         generic (
@@ -68,12 +83,12 @@ architecture Behavioral of Multiciclo is
     end component;
 
     component genImm32 is
-		  port (
-			  instr : in std_logic_vector(31 downto 0);
-			  imm32 : out std_logic_vector(31 downto 0));
+ port (
+ instr : in std_logic_vector(31 downto 0);
+ imm32 : out std_logic_vector(31 downto 0));
     end component;
-	 
-	 -- Componentes de Memória
+
+-- Componentes de Memória
     component ramI is
         port (
             address : in std_logic_vector(9 downto 0);
@@ -81,7 +96,7 @@ architecture Behavioral of Multiciclo is
             q       : out std_logic_vector(31 downto 0)
         );
     end component;
-    
+   
     component ramD is
         port (
             address : in std_logic_vector(9 downto 0);
@@ -181,16 +196,16 @@ begin
             when S_EXECUTE =>
                 -- Executa a operação na ULA
                 ALUSrcA <= "10"; -- reg A
-                if (opcode = TIPO_R) then
+                if (opcode = OPC_RTYPE) then
                     ALUSrcB <= "00"; -- reg B
                     proximo_estado <= S_WB;
-                elsif (opcode = TIPO_I_LOAD or opcode = TIPO_S) then
+                elsif (opcode = OPC_LOAD or opcode = OPC_STORE) then
                     ALUSrcB <= "10"; -- Imediato
                     proximo_estado <= S_MEM;
-                elsif (opcode = TIPO_I_ARIT) then
+                elsif (opcode = OPC_OPIMM) then
                     ALUSrcB <= "10"; -- Imediato
                     proximo_estado <= S_WB;
-                elsif (opcode = TIPO_B) then
+                elsif (opcode = OPC_BRANCH) then
                     ALUSrcA <= "10"; -- reg A
                     ALUSrcB <= "00"; -- reg B
                     if ZeroFlag = '1' then
@@ -205,10 +220,10 @@ begin
             when S_MEM =>
                 -- Acessa a memória de dados
                 IorD <= "01"; -- Endereço para memória vem da ULA
-                if (opcode = TIPO_I_LOAD) then
+                if (opcode = OPC_LOAD) then
                     MemRead_FSM <= '1';
                     proximo_estado <= S_WB;
-                elsif (opcode = TIPO_S) then
+                elsif (opcode = OPC_STORE) then
                     MemWrite_FSM <= '1';
                     proximo_estado <= S_FETCH;
                 end if;
@@ -219,7 +234,7 @@ begin
                 proximo_estado <= S_FETCH;
         end case;
     end process;
-    
+   
     -- 2. ATUALIZAÇÃO DOS REGISTRADORES DE ESTADO
     -- Carregar o PC e os regs de estado na borda do clock
     process(clockCPU, reset)
@@ -271,7 +286,7 @@ begin
         clock   => clockMem,
         q       => Instr_from_mem
     );
-    
+   
     MemD : ramD port map (
         address => ALUOut(11 downto 2), -- Endereço sempre vem da ALUOut na fase MEM
         clock   => clockMem,
@@ -290,7 +305,7 @@ begin
         RegWrite => EscreveReg, MemRead => LeMem, MemWrite => EscreveMem,
         ALUSrc => OrigULA, WBDataSel => WBDataSel, BranchPCSel => BranchPCSel, Jump => Jump
     );
-    
+   
     -- Banco de Registradores
     Regs1 : xregs port map (
         iCLK => clockCPU, iRST => reset,
@@ -304,13 +319,13 @@ begin
         iDISP => regin,
         oREGD => regout_internal
     );
-    
+   
     -- MUX da entrada A da ULA
     with ALUSrcA select
         SrcA_comb <= PC_internal when "00",
                      A           when "10",
                      (others => 'X') when others;
-    
+   
     -- MUX da entrada B da ULA
     with ALUSrcB select
         SrcB_comb <= B         when "00",
@@ -331,7 +346,7 @@ begin
         iB       => SrcB_comb,
         oResult  => SaidaULA_comb
     );
-    
+   
     ZeroFlag <= '1' when SaidaULA_comb = x"00000000" else '0';
 
     -- MUX de Write Back (agora seleciona entre ALUOut e MDR)
@@ -340,15 +355,15 @@ begin
                   MDR    when "01", -- Dado da memória (Load)
                   ALUOut when "10", -- PC+4 (para JAL/JALR, vem da ULA na etapa EXEC)
                   (others => '0') when others;
-                  
+                 
     -- Saídas para depuração
     PC    <= PC_internal;
     Instr <= IR; -- Mostra a instrução que está sendo processada
     regout <= regout_internal;
-	 
-	with estado_atual select
+
+with estado_atual select
     Estado_out <= "0001" when S_FETCH,
-                  "0010" when S_DECODE_BRANCH,
+                  "0010" when S_DECODE,
                   "0100" when S_EXECUTE,
                   "1000" when S_MEM,
                   "0101" when S_WB, -- Exemplo para WB
