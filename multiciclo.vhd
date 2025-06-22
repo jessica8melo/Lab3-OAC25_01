@@ -18,36 +18,24 @@ entity Multiciclo is
 end Multiciclo;
 
 architecture Behavioral of Multiciclo is
--- Componentes não tiveram mudanças de Uniciclo pra Multiciclo
     component ControlUnit is
     Port (
-        -- ENTRADAS
         opcode      : in  STD_LOGIC_VECTOR (6 downto 0); -- Opcode da instrução
         zero_flag   : in  STD_LOGIC;                     -- Flag da ULA para BEQ
-
-        -- SAÍDAS DE CONTROLE DO DATAPATH
-        -- Controle do PC
         PCWrite     : out STD_LOGIC;
         PCSource    : out STD_LOGIC_VECTOR(1 downto 0); -- 00=ALU(PC+4), 01=ALUOut(Branch), 10=JUMP_ADDR
-
-        -- Controle de Regs de Estado
         IRWrite     : out STD_LOGIC;
         RegWrite    : out STD_LOGIC; -- Escrita no Banco de Registradores
-
-        -- Controle dos MUX da ULA
         ALUSrcA     : out STD_LOGIC; -- 0=PC, 1=Reg. A
         ALUSrcB     : out STD_LOGIC_VECTOR(1 downto 0); -- 00=Reg. B, 01=Imm(4), 10=Imm
-
-        -- Controle da Memória
         MemRead     : out STD_LOGIC;
         MemWrite    : out STD_LOGIC;
         IorD        : out STD_LOGIC; -- 0=Endereço do PC, 1=Endereço da ALUOut
-
-        -- Controle do MUX de Write Back
-        WBDataSel   : out STD_LOGIC -- 0=ALUOut, 1=Dado da Memória (MDR)
+        WBDataSel   : out STD_LOGIC_VECTOR(1 downto 0); -- 0=ALUOut, 1=Dado da Memória (MDR)
+        ALUOpType   : out std_logic_vector(1 downto 0)
     );
 end component;
-
+-- Componentes não tiveram mudanças de Uniciclo pra Multiciclo
     component xregs is
         generic (
             SIZE : natural := 32;
@@ -126,12 +114,10 @@ end component;
     signal ALUControlSig    : std_logic_vector(4 downto 0);
     signal SrcA_comb, SrcB_comb : std_logic_vector(31 downto 0);
     signal WBData           : std_logic_vector(31 downto 0);
-    signal BranchPCSel      : std_logic;
-    signal Jump             : std_logic;
 
     -- NOVOS SINAIS E REGS PARA MULTICICLO
     -- Definição dos estados (máquina de estados finita - FSM)
-    type T_ESTADO is (S_FETCH, S_DECODE, S_EXECUTE, S_MEM, S_WB);
+    type T_ESTADO is (S_FETCH, S_DECODE_BRANCH, S_EXECUTE, S_MEM, S_WB);
     signal estado_atual, proximo_estado: T_ESTADO;
 
     -- Sinais de controle gerados pela FSM
@@ -185,9 +171,9 @@ begin
                 ALUSrcB      <= "01"; -- Imediato (4)
                 PCSource     <= "00"; -- Saída da ULA (PC+4)
                 PCWrite      <= '1';
-                proximo_estado <= S_DECODE;
+                proximo_estado <= S_DECODE_BRANCH;
 
-            when S_DECODE =>
+            when S_DECODE_BRANCH =>
                 -- Decodifica e busca operandos no banco de regs
                 ALUSrcA      <= "00"; -- Reg. A
                 ALUSrcB      <= "11"; -- Imediato (para cálculo de branch)
@@ -198,16 +184,20 @@ begin
                 ALUSrcA <= "10"; -- reg A
                 if (opcode = OPC_RTYPE) then
                     ALUSrcB <= "00"; -- reg B
+                    ALUOpType <= "10";
                     proximo_estado <= S_WB;
                 elsif (opcode = OPC_LOAD or opcode = OPC_STORE) then
                     ALUSrcB <= "10"; -- Imediato
+                    ALUOpType <= "00";
                     proximo_estado <= S_MEM;
                 elsif (opcode = OPC_OPIMM) then
                     ALUSrcB <= "10"; -- Imediato
+                    ALUOpType <= "11";
                     proximo_estado <= S_WB;
                 elsif (opcode = OPC_BRANCH) then
                     ALUSrcA <= "10"; -- reg A
                     ALUSrcB <= "00"; -- reg B
+                    ALUOpType   <= "01";
                     if ZeroFlag = '1' then
                         PCSource <= "01"; -- Endereço de branch (PC + Imm)
                         PCWrite <= '1';
@@ -303,7 +293,7 @@ begin
     CU1 : ControlUnit port map (
         opcode => opcode, zero_flag => ZeroFlag, ALUOpType => ALUOpType,
         RegWrite => EscreveReg, MemRead => LeMem, MemWrite => EscreveMem,
-        ALUSrc => OrigULA, WBDataSel => WBDataSel, BranchPCSel => BranchPCSel, Jump => Jump
+        ALUSrcA => OrigULA, WBDataSel => WBDataSel
     );
    
     -- Banco de Registradores
@@ -363,7 +353,7 @@ begin
 
 with estado_atual select
     Estado_out <= "0001" when S_FETCH,
-                  "0010" when S_DECODE,
+                  "0010" when S_DECODE_BRANCH,
                   "0100" when S_EXECUTE,
                   "1000" when S_MEM,
                   "0101" when S_WB, -- Exemplo para WB
