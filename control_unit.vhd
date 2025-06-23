@@ -41,7 +41,7 @@ end ControlUnit;
 
 architecture Behavioral of ControlUnit is
     -- Definição dos estados da máquina
-    type T_ESTADO is (S_FETCH, S_DECODE_BRANCH, S_EXECUTE, S_MEM, S_WB);
+    type T_ESTADO is (S_FETCH_START, S_FETCH_WAIT, S_DECODE_BRANCH, S_EXECUTE, S_MEM_START, S_MEM_WAIT, S_WB);
     signal estado_atual, proximo_estado: T_ESTADO;
 
 begin
@@ -51,7 +51,7 @@ begin
     process(clock, reset)
     begin
         if reset = '1' then
-            estado_atual <= S_FETCH;
+            estado_atual <= S_FETCH_START;
         elsif rising_edge(clock) then
             estado_atual <= proximo_estado;
         end if;
@@ -77,13 +77,23 @@ begin
         --LÓGICA DA MÁQUINA DE ESTADOS
         case estado_atual is
             -- ETAPA 1: BUSCA DA INSTRUÇÃO
-            when S_FETCH =>
+            when S_FETCH_START =>
                 -- Ler da mem de instruções, guardar no IR, ULA calcula PC+4, PC é atualizado.
                 MemRead   <= '1';
                 IRWrite   <= '1';
                 ALUSrcA   <= '0';       -- ULA.iA = PC
                 ALUSrcB   <= "01";      -- ULA.iB = 4
                 PCSource  <= "00";      -- PC_next = Saída da ULA (PC+4)
+                PCWrite   <= '1';
+                proximo_estado <= S_FETCH_WAIT;
+
+            when S_FETCH_WAIT =>
+                -- Mesmas saídas do FETCH_START
+                MemRead   <= '1';
+                IRWrite   <= '1';
+                ALUSrcA   <= '0';       
+                ALUSrcB   <= "01";      
+                PCSource  <= "00";      
                 PCWrite   <= '1';
                 proximo_estado <= S_DECODE_BRANCH;
 
@@ -113,7 +123,7 @@ begin
                     when OPC_LOAD | OPC_STORE =>
                         ALUSrcB <= "10"; -- ULA.iB = Imediato (cálculo de endereço)
                         ALUOpType   <= "00";
-                        proximo_estado <= S_MEM;
+                        proximo_estado <= S_MEM_START;
 
                     when OPC_BRANCH =>
                         ALUSrcB <= "00"; -- ULA.iB = Registrador B (para comparação)
@@ -122,7 +132,7 @@ begin
                             PCWrite  <= '1';
                             PCSource <= "01"; -- PC_next = ALUOut (endereço calculado na etapa anterior)
                         end if;
-                        proximo_estado <= S_FETCH;
+                        proximo_estado <= S_FETCH_START;
                        
                     when OPC_JALR | OPC_JAL =>
                         -- A ULA já calculou PC+4 (Fetch) ou Endereço do Salto (Decode)
@@ -131,20 +141,25 @@ begin
                         proximo_estado <= S_WB;
                        
                     when others =>
-                        proximo_estado <= S_FETCH; -- Instrução não suportada
+                        proximo_estado <= S_FETCH_START; -- Instrução não suportada
                 end case;
 
             -- ETAPA 4: ACESSO À MEMÓRIA
-            when S_MEM =>
+            when S_MEM_START =>
                 -- Usar o endereço em ALUOut para ler ou escrever na memória de dados.
                 IorD <= '1'; -- Endereço para memória vem da ALUOut
+                proximo_estado <= S_MEM_WAIT;
+
+            when S_MEM_WAIT =>
+                -- Mesmas saídas do MEM_START
+                IorD <= '1'; 
                
                 if opcode = OPC_LOAD then
                     MemRead <= '1';
                     proximo_estado <= S_WB;
                 elsif opcode = OPC_STORE then
                     MemWrite <= '1';
-                    proximo_estado <= S_FETCH;
+                    proximo_estado <= S_FETCH_START;
                 end if;
 
             -- ETAPA 5: ESCRITA DE VOLTA (WRITE-BACK)
@@ -158,7 +173,7 @@ begin
                     WBDataSel <= '0'; -- Dado a ser escrito vem da ULA (ALUOut)
                 end if;
                
-                proximo_estado <= S_FETCH;
+                proximo_estado <= S_FETCH_START;
 
         end case;
     end process;
