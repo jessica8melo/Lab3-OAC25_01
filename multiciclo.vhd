@@ -34,7 +34,8 @@ architecture Behavioral of Multiciclo is
             MemWrite    : out STD_LOGIC;
             IorD        : out STD_LOGIC;
             WBDataSel   : out STD_LOGIC;
-            ALUOpType   : out std_logic_vector(1 downto 0)
+            ALUOpType   : out std_logic_vector(1 downto 0);
+Estado : out std_logic_vector(3 downto 0)
         );
     end component;
 
@@ -149,7 +150,8 @@ begin
         MemWrite    => MemWrite,
         IorD        => IorD,
         WBDataSel   => WBDataSel,
-        ALUOpType   => ALUOpType
+        ALUOpType   => ALUOpType,
+ Estado      => Estado_out
     );
 
     -- Banco de registradores

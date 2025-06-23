@@ -35,7 +35,9 @@ entity ControlUnit is
         WBDataSel   : out STD_LOGIC; -- 0=ALUOut, 1=Dado da Memória (MDR)
 
         -- Controle da ULA
-        ALUOpType   : out std_logic_vector(1 downto 0)
+        ALUOpType   : out std_logic_vector(1 downto 0);
+ 
+        Estado : out std_logic_vector(3 downto 0)
     );
 end ControlUnit;
 
@@ -44,7 +46,15 @@ architecture Behavioral of ControlUnit is
     type T_ESTADO is (S_FETCH_START, S_FETCH_WAIT, S_DECODE_BRANCH, S_EXECUTE, S_MEM_START, S_MEM_WAIT, S_WB);
     signal estado_atual, proximo_estado: T_ESTADO;
 
+    -- Função auxiliar para converter o estado enumerado para um inteiro
+    function enum2int (state : T_ESTADO) return integer is
+    begin
+        return T_ESTADO'pos(state);
+    end function;
+
 begin
+    -- Estado atual exposto na saída State_out
+    Estado <= std_logic_vector(to_unsigned(enum2int(estado_atual), 4));
 
     -- 1. Processo Sequencial: Atualização do Estado Atual
     -- Armazena o estado atual.
@@ -91,7 +101,7 @@ begin
                 -- Mesmas saídas do FETCH_START
                 MemRead   <= '1';
                 IRWrite   <= '1';
-                ALUSrcA   <= '0';       
+                ALUSrcA   <= '0';      
                 ALUSrcB   <= "01";      
                 PCSource  <= "00";      
                 PCWrite   <= '1';
@@ -152,7 +162,7 @@ begin
 
             when S_MEM_WAIT =>
                 -- Mesmas saídas do MEM_START
-                IorD <= '1'; 
+                IorD <= '1';
                
                 if opcode = OPC_LOAD then
                     MemRead <= '1';
